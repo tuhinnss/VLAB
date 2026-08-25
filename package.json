@@ -1,14 +1,92 @@
 {
-  "name": "khetchain",
-  "version": "1.0.0",
+  "name": "physicshub",
+  "homepage": "https://physicshub.github.io",
+  "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "install:all": "npm install --prefix contracts && npm install --prefix backend && npm install --prefix frontend",
-    "compile": "npm run compile --prefix contracts",
-    "test:contracts": "npm run test --prefix contracts",
-    "node": "npm run node --prefix contracts",
-    "deploy:local": "npm run deploy:local --prefix contracts",
-    "dev:backend": "npm run dev --prefix backend",
-    "dev:frontend": "npm run dev --prefix frontend"
-  }
+    "dev": "next dev & nodemon --watch src/routes.js --watch public/index.html --exec \"npm run generate:sitemap\"",
+    "build": "npm run generate:sitemap && next build",
+    "preview": "npm run build && npx serve@latest out",
+    "predeploy": "npm run build && npm run contributors",
+    "deploy": "gh-pages -d out",
+    "generate:sitemap": "node scripts/sitemap-generator.js",
+    "i18n:extract": "npx i18next-parser --config i18next-parser.config.cjs",
+    "contributors": "node --loader ts-node/esm scripts/contributors/contributors.ts",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "pre-commit": "node scripts/check-package-lock.js",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@fortawesome/fontawesome-svg-core": "^7.2.0",
+    "@fortawesome/free-brands-svg-icons": "^7.1.0",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@fortawesome/react-fontawesome": "^3.1.0",
+    "@octokit/rest": "^22.0.1",
+    "ace-builds": "^1.43.5",
+    "clsx": "^2.1.1",
+    "katex": "^0.16.25",
+    "koalaz": "^1.1.3",
+    "motion": "^12.38.0",
+    "next": "^15.3.6",
+    "p5": "^2.2.3",
+    "planck": "^1.4.2",
+    "react": "^19.2.0",
+    "react-ace": "^14.0.1",
+    "react-dom": "^19.2.5",
+    "react-katex": "^3.1.0",
+    "react-router-hash-link": "^2.4.3",
+    "react-syntax-highlighter": "^16.1.0",
+    "xml-formatter": "^3.6.7"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@semantic-release/exec": "^7.1.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^25.3.3",
+    "@types/p5": "^1.7.6",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/react-katex": "^3.0.4",
+    "@types/react-syntax-highlighter": "^15.5.13",
+    "@typescript-eslint/eslint-plugin": "^8.60.1",
+    "@typescript-eslint/parser": "^8.53.0",
+    "axios": "^1.16.0",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "15.3.6",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-react-refresh": "^0.5.2",
+    "fast-xml-parser": "^5.8.0",
+    "gh-pages": "^6.3.0",
+    "globals": "^17.0.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.8.0",
+    "puppeteer": "^24.42.0",
+    "sitemap": "^9.0.1",
+    "tailwindcss": "^4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "**/*.{json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "author": "MattQ",
+  "license": "MIT"
 }
