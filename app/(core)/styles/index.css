@@ -1,0 +1,39 @@
+/* ============================================================================
+   PhysicsHub — global stylesheet entry point.
+
+   This is the only stylesheet imported by app/layout.tsx. Import order is the
+   cascade order, so keep it: tokens → base → layout → components → pages.
+
+   base/       design tokens, element defaults, shared keyframes, utilities
+   layout/     site chrome that appears on every page
+   components/ reusable pieces, named after the component that renders them
+   pages/      rules that only apply to a single route
+   ============================================================================ */
+
+@import "tailwindcss";
+
+/* --- Foundations ----------------------------------------------------------- */
+@import "./base/tokens.css";
+@import "./base/reset.css";
+@import "./base/animations.css";
+@import "./base/utilities.css";
+
+/* --- Site chrome ----------------------------------------------------------- */
+@import "./layout/header.css";
+@import "./layout/footer.css";
+
+/* --- Components ------------------------------------------------------------ */
+@import "./components/buttons.css";
+@import "./components/forms.css";
+@import "./components/search.css";
+@import "./components/tags.css";
+@import "./components/chapter-card.css";
+@import "./components/language-switcher.css";
+@import "./components/popup.css";
+@import "./components/simulation.css";
+@import "./components/theory.css";
+
+/* --- Pages ----------------------------------------------------------------- */
+@import "./pages/landing.css";
+@import "./pages/simulations.css";
+@import "./pages/not-found.css";

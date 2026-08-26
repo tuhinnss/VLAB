@@ -1,0 +1,34 @@
+{
+  "en": {
+    "name": "English",
+    "completed": true
+  },
+  "it": {
+    "name": "Italian",
+    "completed": true
+  },
+  "es": {
+    "name": "Spanish",
+    "completed": true
+  },
+  "fr": {
+    "name": "French",
+    "completed": true
+  },
+  "de": {
+    "name": "German",
+    "completed": true
+  },
+  "ar": {
+    "name": "Arabic",
+    "completed": false
+  },
+  "rw": {
+    "name": "Kinyarwanda",
+    "completed": true
+  },
+  "id": {
+    "name": "Bahasa Indonesia",
+    "completed": true
+  }
+}
