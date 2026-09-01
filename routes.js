@@ -15,30 +15,30 @@ export const routes = [
     "path": "/simulations/BouncingBall",
     "changefreq": "weekly",
     "priority": 0.7,
-    "lastmod": "2026-08-26"
+    "lastmod": "2026-09-01"
   },
   {
     "path": "/simulations/BallAcceleration",
     "changefreq": "weekly",
     "priority": 0.7,
-    "lastmod": "2026-08-26"
+    "lastmod": "2026-09-01"
   },
   {
     "path": "/simulations/BallGravity",
     "changefreq": "weekly",
     "priority": 0.7,
-    "lastmod": "2026-08-26"
+    "lastmod": "2026-09-01"
   },
   {
     "path": "/simulations/ParabolicMotion",
     "changefreq": "weekly",
     "priority": 0.7,
-    "lastmod": "2026-08-26"
+    "lastmod": "2026-09-01"
   },
   {
     "path": "/simulations/InclinedPlane",
     "changefreq": "weekly",
     "priority": 0.7,
-    "lastmod": "2026-08-26"
+    "lastmod": "2026-09-01"
   }
 ];

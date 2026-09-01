@@ -1,5 +1,6 @@
 // app/components/Header.jsx
 "use client";
+import Link from "next/link";
 import { useState, useCallback, useEffect, useRef } from "react";
 import useTranslation from "../hooks/useTranslation.ts";
 import { Logo } from "./Logo";
@@ -11,6 +12,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHamburger } from "@fortawesome/free-solid-svg-icons";
 import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { usePathname } from "next/navigation.js";
+import { useAuth } from "./AuthProvider.jsx";
 
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
@@ -18,6 +20,7 @@ export default function Header() {
   const { mode, toggleMode } = useTheme();
   const pathname = usePathname();
   const { t, meta } = useTranslation();
+  const { user, signOut, isConfigured } = useAuth();
   const isCompleted = meta?.completed || false;
   const bodyStylesRef = useRef({ overflow: "", paddingRight: "" });
   const previousActiveRef = useRef(null);
@@ -130,6 +133,29 @@ export default function Header() {
         <div className="controls">
           <LanguageSwitcher />
           <Theme mode={mode} onToggle={toggleMode} />
+          {isConfigured ? (
+            user ? (
+              <div className="auth-user-chip">
+                <span className="auth-user-avatar">
+                  {user.displayName?.charAt(0) || user.email?.charAt(0) || "U"}
+                </span>
+                <span className="auth-user-name">
+                  {user.displayName || user.email?.split("@")[0] || "User"}
+                </span>
+                <button
+                  type="button"
+                  className="auth-signout-button"
+                  onClick={() => signOut()}
+                >
+                  Sign out
+                </button>
+              </div>
+            ) : (
+              <Link href="/signin" className="auth-signin-button">
+                Sign in
+              </Link>
+            )
+          ) : null}
         </div>
       </div>
 
