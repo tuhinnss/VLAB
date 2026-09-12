@@ -1,18 +1,13 @@
 // app/(pages)/simulations/[id]/page.tsx
 import chapters from "@/app/(core)/data/chapters";
+import { RETAINED_SIMULATION_LINKS } from "@/app/(core)/data/retainedSimulations";
 import SimulationWrapper from "./_components/SimulationWrapper";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 
 export const dynamicParams = false;
 
-const retainedSimulationLinks = new Set([
-  "/simulations/BallAcceleration",
-  "/simulations/BouncingBall",
-  "/simulations/BallGravity",
-  "/simulations/ParabolicMotion",
-  "/simulations/InclinedPlane",
-]);
+const retainedSimulationLinks = new Set(RETAINED_SIMULATION_LINKS);
 
 type Props = {
   params: Promise<{ id: string }>;
