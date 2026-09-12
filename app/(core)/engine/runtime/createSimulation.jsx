@@ -25,7 +25,7 @@
  */
 
 import { useState, useCallback, useMemo, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 
 import World from "../World.js";
 import { Backdrop } from "../render/Backdrop.js";
@@ -45,6 +45,7 @@ import SimInfoPanel from "../../components/SimInfoPanel.jsx";
 
 import useSimulationState from "../../hooks/useSimulationState";
 import useSimInfo from "../../hooks/useSimInfo";
+import { useRoom } from "../../hooks/useRoom.js";
 
 /**
  * A live view over the current inputs. Elements capture it once at build time
@@ -101,6 +102,8 @@ export default function createSimulation(spec) {
 
   return function Simulation() {
     const location = usePathname();
+    const searchParams = useSearchParams();
+    const roomId = searchParams.get("room");
     const storageKey = location.replaceAll(/[/#]/g, "");
 
     const { inputs, setInputs, inputsRef } = useSimulationState(
@@ -108,6 +111,22 @@ export default function createSimulation(spec) {
       storageKey
     );
     const [resetVersion, setResetVersion] = useState(0);
+    const remoteActionRef = useRef(null);
+    const { status: multiplayerStatus, sendPlayerAction } = useRoom(spec.multiplayer && roomId ? roomId : null, {
+      onSimulatorStateUpdate: ({ action }) => {
+        if (action?.type === "reset") {
+          setResetVersion((version) => version + 1);
+          return;
+        }
+        remoteActionRef.current?.(action);
+      },
+    });
+    const multiplayerContext = {
+      enabled: Boolean(spec.multiplayer && roomId),
+      status: multiplayerStatus,
+      sendAction: (action) => sendPlayerAction(action).catch(() => {}),
+      onRemoteAction: (handler) => { remoteActionRef.current = handler; },
+    };
 
     /**
      * State the sketch can push back into the DOM overlay (a wind indicator, a
@@ -172,6 +191,7 @@ export default function createSimulation(spec) {
               infoRefs: simInfoRefsRef.current,
               bounds: world.bounds,
               setOverlay: setOverlayState,
+              multiplayer: multiplayerContext,
             }) ?? {};
         };
 
@@ -187,6 +207,7 @@ export default function createSimulation(spec) {
           setOverlay: setOverlayState,
           rebuild,
           ...extra,
+          multiplayer: multiplayerContext,
         });
 
         p.setup = () => {
@@ -257,7 +278,8 @@ export default function createSimulation(spec) {
       refsRef.current = {};
       if (wasPaused) setPause(true);
       setResetVersion((v) => v + 1);
-    }, []);
+      if (multiplayerContext.enabled) multiplayerContext.sendAction({ type: "reset" });
+    }, [multiplayerContext]);
 
     const handleLoad = useCallback(
       (loadedInputs) => {
@@ -287,6 +309,11 @@ export default function createSimulation(spec) {
           simInfos={<SimInfoPanel data={simData} />}
         />
         {overlay?.({ inputs, state: overlayState, refs: refsRef.current })}
+        {multiplayerContext.enabled ? (
+          <div className={`multiplayer-status multiplayer-status--${multiplayerContext.status}`}>
+            <span aria-hidden="true" /> {multiplayerContext.status === "connected" ? "Connected" : "Disconnected"}
+          </div>
+        ) : null}
       </SimulationLayout>
     );
   };

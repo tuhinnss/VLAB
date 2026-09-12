@@ -58,6 +58,35 @@ Open the application in your browser at:
 http://localhost:3000
 ```
 
+### Lab with Friends (multiplayer rooms)
+
+2–4 signed-in users can join the same simulation together in real time. Rooms
+are held in memory by a standalone Socket.IO server; identity comes from the
+same Firebase Authentication used for sign-in — the socket server verifies
+each connection's Firebase ID token, it never trusts an ID sent by the client.
+
+Configure the Firebase client variables used by the existing sign-in flow,
+then provide a Firebase Admin service-account JSON value to the socket
+process:
+
+```text
+FIREBASE_SERVICE_ACCOUNT_JSON={...}
+APP_ORIGIN=http://localhost:3000
+SOCKET_PORT=3001
+NEXT_PUBLIC_SOCKET_URL=http://localhost:3001
+```
+
+Run the app and socket service in separate terminals:
+
+```bash
+npm run dev
+npm run socket-server
+```
+
+Existing simulations remain the source of the simulation UI; the room feature
+only adds an optional multiplayer sync layer (`spec.multiplayer: true`) on top
+of them and does not duplicate them.
+
 ## Project Structure
 
 ```text

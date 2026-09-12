@@ -22,12 +22,13 @@ import {
  */
 export default createSimulation({
   config: { INITIAL_INPUTS, INPUT_FIELDS, SimInfoMapper },
+  multiplayer: true,
   simInfoRefs: () => ({
     maxHeightRef: { current: 0 },
     fallStartTimeRef: { current: 0 },
   }),
 
-  build({ world, p, inputs, bounds, infoRefs }) {
+  build({ world, p, inputs, bounds, infoRefs, multiplayer }) {
     const ball = world.addBody({
       label: "ball",
       mass: () => inputs.mass,
@@ -38,6 +39,12 @@ export default createSimulation({
       at: [bounds.width / 2, bounds.height - (inputs.size / 2 + 0.3)],
       trail: () => inputs.trailEnabled,
       trailLength: 200,
+    });
+
+    multiplayer.onRemoteAction((action) => {
+      if (action?.type !== "move-object" || action.objectId !== "ball") return;
+      ball.setPosition(action.x, action.y);
+      ball.setVelocity(action.vx, action.vy);
     });
 
     world.add(
@@ -52,6 +59,16 @@ export default createSimulation({
         },
         onRelease: () => {
           infoRefs.fallStartTimeRef.current = p.millis();
+          if (multiplayer.enabled) {
+            multiplayer.sendAction({
+              type: "move-object",
+              objectId: "ball",
+              x: ball.state.position.x,
+              y: ball.state.position.y,
+              vx: ball.state.velocity.x,
+              vy: ball.state.velocity.y,
+            });
+          }
         },
       }),
 
