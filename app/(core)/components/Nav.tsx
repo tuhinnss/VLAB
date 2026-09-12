@@ -9,6 +9,7 @@ import useTranslation from "../../(core)/hooks/useTranslation";
 const menuItems = [
   { href: "/", label: "Home" },
   { href: "/simulations", label: "Simulations" },
+  { href: "/lab-with-friends", label: "Lab with Friends" },
 ];
 
 type NavMenuProps = {

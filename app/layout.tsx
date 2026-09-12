@@ -3,6 +3,7 @@ import "katex/dist/katex.min.css";
 import Script from "next/script";
 import Layout from "./(core)/components/Layout.jsx";
 import { AuthProvider } from "./(core)/components/AuthProvider.jsx";
+import { SocketProvider } from "./(core)/context/SocketProvider.jsx";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -111,9 +112,11 @@ export default function RootLayout({
           </Script>
 
           <AuthProvider>
-            <Layout showStars={true} showGradient={true}>
-              {children}
-            </Layout>
+            <SocketProvider>
+              <Layout showStars={true} showGradient={true}>
+                {children}
+              </Layout>
+            </SocketProvider>
           </AuthProvider>
         </body>
     </html>

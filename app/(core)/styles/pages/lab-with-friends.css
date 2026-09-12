@@ -1,0 +1,317 @@
+/* ============================================================================
+   LAB WITH FRIENDS  (/lab-with-friends)
+   ============================================================================ */
+
+.friends-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 7rem 1.25rem 3rem;
+}
+
+.friends-panel {
+  width: 100%;
+  max-width: 32rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--ph-radius);
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.friends-panel h1 {
+  font-size: 1.6rem;
+  color: var(--title-color);
+  margin: 0 0 0.75rem;
+}
+
+.friends-kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.72rem;
+  color: var(--accent-color);
+  font-weight: 600;
+  margin: 0;
+}
+
+.friends-back {
+  align-self: flex-start;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+}
+
+.friends-back:hover {
+  color: var(--text-color);
+}
+
+.friends-note {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin: 0 0 0.5rem;
+}
+
+.friends-error {
+  color: var(--error-color);
+  font-size: 0.85rem;
+  margin: 0.25rem 0 0;
+}
+
+/* --- Landing --------------------------------------------------------------- */
+
+.friends-page--landing {
+  text-align: center;
+}
+
+.friends-landing {
+  max-width: 34rem;
+}
+
+.friends-landing p {
+  color: var(--subtitle-color);
+  margin: 0.75rem 0 1.75rem;
+  line-height: 1.6;
+}
+
+.friends-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Create / Join forms ---------------------------------------------------- */
+
+.friends-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+.friends-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.friends-form input,
+.friends-form select {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: var(--radius-sm);
+  padding: 0.65rem 0.8rem;
+  color: var(--text-color);
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+}
+
+.friends-form input:focus,
+.friends-form select:focus {
+  outline: 2px solid var(--focus-ring);
+}
+
+.friends-submit {
+  margin-top: 0.25rem;
+}
+
+/* --- Lobby ------------------------------------------------------------------ */
+
+.friends-room-id {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 0.85rem 1rem;
+  margin: 0.75rem 0 1.25rem;
+}
+
+.friends-room-id-label {
+  display: block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.friends-room-id-value {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  letter-spacing: 0.04em;
+}
+
+.friends-copy-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.friends-section {
+  margin: 0.5rem 0;
+}
+
+.friends-section h2 {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.5rem;
+}
+
+.friends-section p {
+  margin: 0;
+  color: var(--text-color);
+}
+
+.friends-players {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.friends-player {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-light);
+}
+
+.friends-player--empty {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-style: italic;
+  background: transparent;
+  border: 1px dashed var(--border-color);
+}
+
+.friends-player-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--error-color);
+  flex-shrink: 0;
+}
+
+.friends-player-dot--connected {
+  background: var(--success-color);
+}
+
+.friends-player-avatar {
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.friends-player-avatar--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.friends-player-name {
+  flex: 1;
+  color: var(--text-color);
+  font-size: 0.9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.friends-player-badge {
+  font-size: 0.7rem;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.friends-player-badge--host {
+  background: var(--bg-warning);
+  color: var(--warning-color);
+}
+
+.friends-player-badge--ready {
+  background: var(--bg-success);
+  color: var(--success-color);
+}
+
+.friends-player-badge--waiting {
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+.friends-lobby-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.25rem;
+}
+
+.friends-btn--danger {
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+/* --- Multiplayer status pill shown inside a running simulation -------------- */
+
+.multiplayer-status {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+  background: var(--card-bg);
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.multiplayer-status span {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--error-color);
+}
+
+.multiplayer-status--connected span {
+  background: var(--success-color);
+}
+
+@media (max-width: 480px) {
+  .friends-panel {
+    padding: 1.5rem;
+  }
+
+  .friends-lobby-actions {
+    flex-direction: column;
+  }
+
+  .friends-lobby-actions .ph-btn {
+    width: 100%;
+    text-align: center;
+  }
+}

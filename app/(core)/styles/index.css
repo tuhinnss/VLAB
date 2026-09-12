@@ -36,4 +36,5 @@
 /* --- Pages ----------------------------------------------------------------- */
 @import "./pages/landing.css";
 @import "./pages/simulations.css";
+@import "./pages/lab-with-friends.css";
 @import "./pages/not-found.css";
