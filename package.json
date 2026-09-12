@@ -8,6 +8,7 @@
     "dev": "next dev & nodemon --watch src/routes.js --watch public/index.html --exec \"npm run generate:sitemap\"",
     "build": "npm run generate:sitemap && next build",
     "preview": "npm run build && npx serve@latest out",
+    "socket-server": "node server/socket-server.js",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out",
     "generate:sitemap": "node scripts/sitemap-generator.js",
@@ -29,6 +30,7 @@
     "ace-builds": "^1.43.5",
     "clsx": "^2.1.1",
     "firebase": "^12.18.0",
+    "firebase-admin": "^14.3.0",
     "katex": "^0.16.25",
     "koalaz": "^1.1.3",
     "motion": "^12.38.0",
@@ -41,6 +43,8 @@
     "react-katex": "^3.1.0",
     "react-router-hash-link": "^2.4.3",
     "react-syntax-highlighter": "^16.1.0",
+    "socket.io": "^4.8.3",
+    "socket.io-client": "^4.8.3",
     "xml-formatter": "^3.6.7"
   },
   "devDependencies": {
