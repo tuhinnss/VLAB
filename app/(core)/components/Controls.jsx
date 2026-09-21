@@ -11,9 +11,6 @@ import ShareLinkControl from "./controls/ShareLinkControl.jsx";
 import EmbedCodeControl from "./controls/EmbedCodeControl.jsx";
 import StepButton from "./controls/StepButton.jsx";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowDown, faArrowUp } from "@fortawesome/free-solid-svg-icons";
-
 export default function Controls({ onReset, inputs, simulation, onLoad }) {
   const [isOpen, setIsOpen] = useState(false);
   const { t, meta } = useTranslation();
@@ -39,10 +36,7 @@ export default function Controls({ onReset, inputs, simulation, onLoad }) {
           onClick={() => setIsOpen(!isOpen)}
           aria-label={t("Toggle controls")}
         >
-          <FontAwesomeIcon
-            icon={isOpen ? faArrowUp : faArrowDown}
-            color="var(--accent-color)"
-          />
+          {isOpen ? t("Less") : t("More")}
         </button>
       </div>
 

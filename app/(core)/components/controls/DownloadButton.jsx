@@ -1,7 +1,5 @@
 // controls/DownloadButton.jsx
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import useTranslation from "../../hooks/useTranslation.ts";
 import Popup from "../Popup";
 
@@ -32,7 +30,7 @@ export default function DownloadButton({ inputs, simulation }) {
         className="btn-glow"
         title={t("Download inputs as JSON file")}
       >
-        <FontAwesomeIcon icon={faDownload} />
+        {t("Download")}
       </button>
 
       <Popup
@@ -45,11 +43,7 @@ export default function DownloadButton({ inputs, simulation }) {
           ),
           buttons: [
             {
-              label: (
-                <span>
-                  <FontAwesomeIcon icon={faDownload} /> {t("Download")}
-                </span>
-              ),
+              label: t("Download"),
               onClick: () => handleDownload(),
               type: "primary",
             },

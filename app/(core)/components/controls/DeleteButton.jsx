@@ -1,7 +1,5 @@
 // controls/DeleteButton.jsx
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useTranslation from "../../hooks/useTranslation.ts";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 export default function DeleteButton({ simulation }) {
   const { t, meta } = useTranslation();
@@ -17,7 +15,7 @@ export default function DeleteButton({ simulation }) {
       className={`btn-glow ${isCompleted ? "notranslate" : ""}`}
       title={t("Delete saved inputs from local memory")}
     >
-      <FontAwesomeIcon icon={faTrash} />
+      {t("Delete")}
     </button>
   );
 }

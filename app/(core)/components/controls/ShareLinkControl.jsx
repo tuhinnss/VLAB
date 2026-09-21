@@ -2,17 +2,6 @@
 "use client";
 import { useMemo, useState } from "react";
 import useTranslation from "../../hooks/useTranslation.ts";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faTwitter,
-  faLinkedin,
-  faWhatsapp,
-  faTelegram,
-  faReddit,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
 import Popup from "../Popup";
 
 export default function ShareLinkControl({ simulation, inputs }) {
@@ -36,37 +25,37 @@ export default function ShareLinkControl({ simulation, inputs }) {
   // Funzioni di condivisione per i vari social
   const shareLinks = [
     {
-      label: <FontAwesomeIcon icon={faFacebook} />,
+      label: "Facebook",
       href: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
       type: "primary",
     },
     {
-      label: <FontAwesomeIcon icon={faTwitter} />,
+      label: "Twitter",
       href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(DEFAULT_SHARE_MESSAGE)}`,
       type: "primary",
     },
     {
-      label: <FontAwesomeIcon icon={faLinkedin} />,
+      label: "LinkedIn",
       href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`,
       type: "primary",
     },
     {
-      label: <FontAwesomeIcon icon={faWhatsapp} />,
+      label: "WhatsApp",
       href: `https://api.whatsapp.com/send?text=${encodeURIComponent(DEFAULT_SHARE_MESSAGE + " " + url)}`,
       type: "primary",
     },
     {
-      label: <FontAwesomeIcon icon={faTelegram} />,
+      label: "Telegram",
       href: `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(DEFAULT_SHARE_MESSAGE)}`,
       type: "primary",
     },
     {
-      label: <FontAwesomeIcon icon={faReddit} />,
+      label: "Reddit",
       href: `https://www.reddit.com/submit?url=${encodeURIComponent(url)}&title=${encodeURIComponent(DEFAULT_SHARE_MESSAGE)}`,
       type: "primary",
     },
     {
-      label: <FontAwesomeIcon icon={faInstagram} />,
+      label: "Instagram",
       href: `https://www.instagram.com/`, // Instagram non ha un vero sharer URL, si apre la homepage
       type: "primary",
     },
@@ -79,7 +68,7 @@ export default function ShareLinkControl({ simulation, inputs }) {
         className="btn-glow"
         title={t("Copy shareable link to clipboard")}
       >
-        <FontAwesomeIcon icon={faShare} />
+        {t("Share")}
       </button>
 
       <Popup

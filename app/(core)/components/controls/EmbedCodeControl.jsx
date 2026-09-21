@@ -2,8 +2,6 @@
 "use client";
 import { useMemo } from "react";
 import useTranslation from "../../hooks/useTranslation.ts";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCode } from "@fortawesome/free-solid-svg-icons";
 
 export default function EmbedCodeControl({
   simulation,
@@ -36,7 +34,7 @@ export default function EmbedCodeControl({
         className="btn-glow"
         title={t("Copy embed code to clipboard")}
       >
-        <FontAwesomeIcon icon={faCode} />
+        {t("Embed")}
       </button>
     </div>
   );

@@ -1,6 +1,4 @@
 import { resetTime } from "../../constants/Time.js";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faRedo } from "@fortawesome/free-solid-svg-icons";
 import useTranslation from "../../hooks/useTranslation.ts";
 
 export default function ResetButton({ onReset }) {
@@ -17,7 +15,7 @@ export default function ResetButton({ onReset }) {
       className={`btn-glow ${isCompleted ? "notranslate" : ""}`}
       title={t("Reset simulation")}
     >
-      <FontAwesomeIcon icon={faRedo} />
+      {t("Reset")}
     </button>
   );
 }

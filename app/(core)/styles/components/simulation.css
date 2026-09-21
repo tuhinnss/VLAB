@@ -100,11 +100,9 @@
 
 .simulation-controls button {
   flex: 0 0 auto;
-  width: 100%;
-  max-width: 3rem;
-  min-height: 1rem;
-  height: 100%;
-  aspect-ratio: 1.2;
+  padding: 0.5rem 0.85rem;
+  white-space: nowrap;
+  font-size: 0.85rem;
 }
 
 /* Desktop: everything on a single row */

@@ -1,7 +1,5 @@
 // controls/SaveButton.jsx
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useTranslation from "../../hooks/useTranslation.ts";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
 
 export default function SaveButton({ inputs, simulation }) {
   const { t, meta } = useTranslation();
@@ -17,7 +15,7 @@ export default function SaveButton({ inputs, simulation }) {
       className={`btn-glow ${isCompleted ? "notranslate" : ""}`}
       title={t("Save inputs to local memory")}
     >
-      <FontAwesomeIcon icon={faSave} />
+      {t("Save")}
     </button>
   );
 }
