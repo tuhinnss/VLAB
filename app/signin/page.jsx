@@ -6,6 +6,7 @@ import { useAuth } from "../(core)/components/AuthProvider.jsx";
 import {
   sendOtpToPhone,
   verifyPhoneOtp,
+  signInWithGoogle,
 } from "../lib/firebase";
 
 export default function SignInPage() {
@@ -20,7 +21,8 @@ export default function SignInPage() {
   const [otpSent, setOtpSent] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  
+  const [googleLoading, setGoogleLoading] = useState(false);
+
   // Timer state
   const [countdown, setCountdown] = useState(0);
 
@@ -59,6 +61,20 @@ export default function SignInPage() {
       setError(submitError.message || "Unable to send OTP.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setError("");
+    setGoogleLoading(true);
+
+    try {
+      await signInWithGoogle();
+      router.push("/");
+    } catch (submitError) {
+      setError(submitError.message || "Unable to sign in with Google.");
+    } finally {
+      setGoogleLoading(false);
     }
   };
 
@@ -228,6 +244,41 @@ export default function SignInPage() {
                         Sending...
                       </span>
                     ) : "Send OTP"}
+                  </button>
+
+                  <div className="vlab-glass-divider flex items-center gap-3">
+                    <span className="h-px flex-1 bg-white/10" />
+                    <span className="text-white/30 text-xs uppercase tracking-wider">or</span>
+                    <span className="h-px flex-1 bg-white/10" />
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={!googleLoading ? handleGoogleSignIn : undefined}
+                    className={`vlab-glass-btn relative w-full rounded-xl font-medium overflow-hidden border border-white/15 backdrop-blur-xl transition-all duration-300 flex items-center justify-center gap-3 ${
+                      googleLoading ? 'bg-white/5 text-white/50 cursor-not-allowed' : 'bg-white/5 hover:bg-white/10 text-white active:scale-[0.98]'
+                    }`}
+                    disabled={googleLoading}
+                  >
+                    {googleLoading ? (
+                      <span className="flex items-center justify-center">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Connecting...
+                      </span>
+                    ) : (
+                      <>
+                        <svg width="18" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path fill="#4285F4" d="M23.52 12.27c0-.85-.08-1.67-.22-2.45H12v4.63h6.47a5.53 5.53 0 0 1-2.4 3.63v3h3.89c2.27-2.09 3.58-5.17 3.58-8.81z"/>
+                          <path fill="#34A853" d="M12 24c3.24 0 5.96-1.07 7.95-2.92l-3.89-3c-1.08.73-2.46 1.15-4.06 1.15-3.12 0-5.77-2.11-6.72-4.94H1.27v3.1A12 12 0 0 0 12 24z"/>
+                          <path fill="#FBBC05" d="M5.28 14.29a7.2 7.2 0 0 1 0-4.58v-3.1H1.27a12 12 0 0 0 0 10.78l4.01-3.1z"/>
+                          <path fill="#EA4335" d="M12 4.75c1.76 0 3.35.61 4.6 1.8l3.45-3.45C17.95 1.19 15.24 0 12 0A12 12 0 0 0 1.27 6.61l4.01 3.1C6.23 6.86 8.88 4.75 12 4.75z"/>
+                        </svg>
+                        Continue with Google
+                      </>
+                    )}
                   </button>
                 </>
               ) : (
