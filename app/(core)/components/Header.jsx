@@ -10,7 +10,6 @@ import { useSticky } from "../hooks/useSticky";
 import { useTheme } from "../hooks/useTheme";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHamburger } from "@fortawesome/free-solid-svg-icons";
-import LanguageSwitcher from "./LanguageSwitcher.jsx";
 import { usePathname } from "next/navigation.js";
 import { useAuth } from "./AuthProvider.jsx";
 
@@ -131,7 +130,6 @@ export default function Header() {
         <NavMenu onNavigate={handleMenuClose} />
 
         <div className="controls">
-          <LanguageSwitcher />
           <Theme mode={mode} onToggle={toggleMode} />
           {isConfigured ? (
             user ? (
