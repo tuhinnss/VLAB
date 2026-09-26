@@ -216,6 +216,10 @@
   transform: scale(1.1);
 }
 
+[data-theme="light"] .btn-close {
+  color: color-mix(in oklab, var(--accent-color), black 25%);
+}
+
 @media (max-width: 640px) {
   .ph-btn {
     width: 100%;

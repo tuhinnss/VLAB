@@ -149,6 +149,10 @@
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  [data-theme="light"] .extra-controls-wrapper {
+    border-top-color: var(--border-color);
+  }
+
   .simulation-controls.is-open .extra-controls-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));

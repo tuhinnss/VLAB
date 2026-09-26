@@ -54,7 +54,23 @@ export default function Stars({
       };
     }
 
-    const baseRGB = hexToRgb(color);
+    // Resolve a "var(--name)" colour against the current theme; plain hex passes through
+    function resolveColor(value) {
+      const match = /^var\((--[\w-]+)\)$/.exec(value.trim());
+      if (!match) return value;
+      return getComputedStyle(document.body).getPropertyValue(match[1]).trim();
+    }
+
+    let baseRGB = hexToRgb(resolveColor(color));
+
+    // Theme tokens change with <body data-theme>, so re-resolve when it flips
+    const themeObserver = new MutationObserver(() => {
+      baseRGB = hexToRgb(resolveColor(color));
+    });
+    themeObserver.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["data-theme"],
+    });
 
     // Build an rgba CSS string from baseRGB and alpha
     function rgba(alpha) {
@@ -124,6 +140,7 @@ export default function Stars({
     return () => {
       cancelAnimationFrame(rafRef.current);
       window.removeEventListener("resize", resizeCanvas);
+      themeObserver.disconnect();
     };
   }, [starDensity, color, show]);
 
