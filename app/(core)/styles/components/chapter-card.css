@@ -24,6 +24,7 @@
   flex-direction: column;
   gap: 12px;
   flex: 1;
+  padding: 1rem 1.1rem;
 }
 
 .chapter-card-tags-container {
