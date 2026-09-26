@@ -149,7 +149,7 @@ export default function SignInPage() {
   if (!isConfigured) {
     return (
       <main className="min-h-screen flex items-center justify-center bg-[#0a0a14]">
-        <div className="text-white text-center">
+        <div className="text-center">
           <h1 className="text-2xl" style={{ marginBottom: "1rem" }}>Firebase setup required</h1>
           <p>Add your Firebase keys to the environment file and reload the page.</p>
         </div>
@@ -161,14 +161,14 @@ export default function SignInPage() {
   const maskedPhone = `${countryCode} ${phoneNumber.substring(0, 2)}******${phoneNumber.substring(phoneNumber.length - 2)}`;
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-[#050510] relative overflow-hidden font-sans">
+    <main className="vlab-signin min-h-screen flex items-center justify-center bg-(--signin-bg) relative overflow-hidden font-sans">
       {/* Subtle Premium Background Elements */}
       <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px] pointer-events-none animate-pulse-slow"></div>
       <div className="absolute bottom-[-10%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-600/10 blur-[150px] pointer-events-none animate-pulse-slow" style={{ animationDelay: "-4s" }}></div>
       <div className="absolute top-[40%] left-[60%] w-[30%] h-[30%] rounded-full bg-cyan-600/5 blur-[100px] pointer-events-none"></div>
 
       <div className="vlab-glass-wrap relative z-10 w-full max-w-md">
-        <div className="vlab-glass-panel relative rounded-[28px] border border-white/15 bg-white/[0.06] backdrop-blur-2xl shadow-2xl">
+        <div className="vlab-glass-panel relative rounded-[28px] border border-(--signin-ink)/15 bg-(--signin-panel) backdrop-blur-2xl shadow-2xl">
           {/* Top highlight sheen */}
           <div
             className="pointer-events-none absolute inset-0 rounded-[28px]"
@@ -182,42 +182,42 @@ export default function SignInPage() {
 
           <div className="flex flex-col items-center w-full relative z-20">
             {/* VLABS Branding */}
-            <div className="vlab-glass-badge flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 shadow-inner">
+            <div className="vlab-glass-badge flex items-center justify-center w-16 h-16 rounded-full text-(--signin-ink) bg-(--signin-ink)/5 border border-(--signin-ink)/10 shadow-inner">
               <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M2 17L12 22L22 17" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M2 12L12 17L22 12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </div>
 
-            <h1 className="vlab-glass-title text-2xl font-light text-white tracking-wide text-center">Welcome to VLABS</h1>
+            <h1 className="vlab-glass-title text-2xl font-light text-(--signin-ink) tracking-wide text-center">Welcome to VLABS</h1>
 
             {!otpSent ? (
-              <p className="vlab-glass-subtitle text-white/50 text-sm text-center font-light">
+              <p className="vlab-glass-subtitle text-(--signin-ink)/50 text-sm text-center font-light">
                 Enter your mobile number to sign in or create an account.
               </p>
             ) : (
-              <p className="vlab-glass-subtitle text-white/50 text-sm text-center font-light">
-                We've sent a code to <br/><span className="text-white/80 font-medium">{maskedPhone}</span>
+              <p className="vlab-glass-subtitle text-(--signin-ink)/50 text-sm text-center font-light">
+                We've sent a code to <br/><span className="text-(--signin-ink)/80 font-medium">{maskedPhone}</span>
               </p>
             )}
 
             <div className="vlab-glass-fields w-full">
               {!otpSent ? (
                 <>
-                  <div className="flex bg-white/5 border border-white/10 rounded-xl overflow-hidden focus-within:border-white/30 transition-colors duration-300">
+                  <div className="flex bg-(--signin-ink)/5 border border-(--signin-ink)/10 rounded-xl overflow-hidden focus-within:border-(--signin-ink)/30 transition-colors duration-300">
                     <select
-                      className="vlab-glass-control bg-transparent text-white/80 outline-none border-r border-white/10 appearance-none font-light"
+                      className="vlab-glass-control bg-transparent text-(--signin-ink)/80 outline-none border-r border-(--signin-ink)/10 appearance-none font-light"
                       value={countryCode}
                       onChange={(e) => setCountryCode(e.target.value)}
                     >
-                      <option value="+91" className="bg-[#111]">IN (+91)</option>
-                      <option value="+1" className="bg-[#111]">US (+1)</option>
-                      <option value="+44" className="bg-[#111]">UK (+44)</option>
+                      <option value="+91" className="bg-(--card-bg)">IN (+91)</option>
+                      <option value="+1" className="bg-(--card-bg)">US (+1)</option>
+                      <option value="+44" className="bg-(--card-bg)">UK (+44)</option>
                     </select>
                     <input
                       type="tel"
-                      className="vlab-glass-control flex-1 bg-transparent text-white outline-none font-light placeholder-white/30"
+                      className="vlab-glass-control flex-1 bg-transparent text-(--signin-ink) outline-none font-light placeholder-(--signin-ink)/30"
                       value={phoneNumber}
                       onChange={(e) => setPhoneNumber(e.target.value.replace(/\D/g, ""))}
                       placeholder="98765 43210"
@@ -225,19 +225,19 @@ export default function SignInPage() {
                     />
                   </div>
 
-                  {error && <p className="text-red-400 text-sm text-center font-light">{error}</p>}
+                  {error && <p className="text-(--signin-error) text-sm text-center font-light">{error}</p>}
 
                   <button
                     type="button"
                     onClick={!loading ? handleSendOtp : undefined}
-                    className={`vlab-glass-btn relative w-full rounded-xl font-medium overflow-hidden border border-white/15 backdrop-blur-xl transition-all duration-300 ${
-                      loading ? 'bg-white/10 text-white/50 cursor-not-allowed' : 'bg-white/10 hover:bg-white/20 text-white active:scale-[0.98] shadow-lg shadow-black/20'
+                    className={`vlab-glass-btn relative w-full rounded-xl font-medium overflow-hidden border border-(--signin-ink)/15 backdrop-blur-xl transition-all duration-300 ${
+                      loading ? 'bg-(--signin-ink)/10 text-(--signin-ink)/50 cursor-not-allowed' : 'bg-(--signin-ink)/10 hover:bg-(--signin-ink)/20 text-(--signin-ink) active:scale-[0.98] shadow-lg shadow-black/20'
                     }`}
                     disabled={loading}
                   >
                     {loading ? (
                       <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-(--signin-ink)/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -247,22 +247,22 @@ export default function SignInPage() {
                   </button>
 
                   <div className="vlab-glass-divider flex items-center gap-3">
-                    <span className="h-px flex-1 bg-white/10" />
-                    <span className="text-white/30 text-xs uppercase tracking-wider">or</span>
-                    <span className="h-px flex-1 bg-white/10" />
+                    <span className="h-px flex-1 bg-(--signin-ink)/10" />
+                    <span className="text-(--signin-ink)/30 text-xs uppercase tracking-wider">or</span>
+                    <span className="h-px flex-1 bg-(--signin-ink)/10" />
                   </div>
 
                   <button
                     type="button"
                     onClick={!googleLoading ? handleGoogleSignIn : undefined}
-                    className={`vlab-glass-btn relative w-full rounded-xl font-medium overflow-hidden border border-white/15 backdrop-blur-xl transition-all duration-300 flex items-center justify-center gap-3 ${
-                      googleLoading ? 'bg-white/5 text-white/50 cursor-not-allowed' : 'bg-white/5 hover:bg-white/10 text-white active:scale-[0.98]'
+                    className={`vlab-glass-btn relative w-full rounded-xl font-medium overflow-hidden border border-(--signin-ink)/15 backdrop-blur-xl transition-all duration-300 flex items-center justify-center gap-3 ${
+                      googleLoading ? 'bg-(--signin-ink)/5 text-(--signin-ink)/50 cursor-not-allowed' : 'bg-(--signin-ink)/5 hover:bg-(--signin-ink)/10 text-(--signin-ink) active:scale-[0.98]'
                     }`}
                     disabled={googleLoading}
                   >
                     {googleLoading ? (
                       <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-(--signin-ink)/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -291,7 +291,7 @@ export default function SignInPage() {
                         type="text"
                         inputMode="numeric"
                         maxLength={1}
-                        className="w-12 h-14 bg-white/5 border border-white/10 rounded-xl text-center text-xl text-white outline-none focus:border-white/30 focus:bg-white/10 transition-all duration-300 font-light"
+                        className="w-12 h-14 bg-(--signin-ink)/5 border border-(--signin-ink)/10 rounded-xl text-center text-xl text-(--signin-ink) outline-none focus:border-(--signin-ink)/30 focus:bg-(--signin-ink)/10 transition-all duration-300 font-light"
                         value={digit}
                         onChange={(e) => handleOtpChange(index, e.target.value)}
                         onKeyDown={(e) => handleOtpKeyDown(index, e)}
@@ -299,19 +299,19 @@ export default function SignInPage() {
                     ))}
                   </div>
 
-                  {error && <p className="text-red-400 text-sm text-center font-light">{error}</p>}
+                  {error && <p className="text-(--signin-error) text-sm text-center font-light">{error}</p>}
 
                   <button
                     type="button"
                     onClick={!loading ? handleVerifyOtp : undefined}
-                    className={`vlab-glass-btn relative w-full rounded-xl font-medium overflow-hidden border border-white/15 backdrop-blur-xl transition-all duration-300 ${
-                      loading ? 'bg-white/10 text-white/50 cursor-not-allowed' : 'bg-white/10 hover:bg-white/20 text-white active:scale-[0.98] shadow-lg shadow-black/20'
+                    className={`vlab-glass-btn relative w-full rounded-xl font-medium overflow-hidden border border-(--signin-ink)/15 backdrop-blur-xl transition-all duration-300 ${
+                      loading ? 'bg-(--signin-ink)/10 text-(--signin-ink)/50 cursor-not-allowed' : 'bg-(--signin-ink)/10 hover:bg-(--signin-ink)/20 text-(--signin-ink) active:scale-[0.98] shadow-lg shadow-black/20'
                     }`}
                     disabled={loading}
                   >
                     {loading ? (
                       <span className="flex items-center justify-center">
-                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-(--signin-ink)/50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                           <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                           <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                         </svg>
@@ -323,7 +323,7 @@ export default function SignInPage() {
                   <div className="vlab-glass-links flex flex-col items-center gap-3">
                     <button
                       type="button"
-                      className="text-white/50 hover:text-white/80 text-sm font-light transition-colors"
+                      className="text-(--signin-ink)/50 hover:text-(--signin-ink)/80 text-sm font-light transition-colors"
                       onClick={handleSendOtp}
                       disabled={loading || countdown > 0}
                     >
@@ -331,7 +331,7 @@ export default function SignInPage() {
                     </button>
                     <button
                       type="button"
-                      className="text-white/40 hover:text-white/70 text-xs font-light transition-colors"
+                      className="text-(--signin-ink)/40 hover:text-(--signin-ink)/70 text-xs font-light transition-colors"
                       onClick={resetPhoneFlow}
                       disabled={loading}
                     >
@@ -355,8 +355,24 @@ export default function SignInPage() {
         These scoped rules use plain class selectors, which beat the reset
         on specificity, matching how the rest of the codebase's hand-written
         CSS already coexists with it.
+
+        The --signin-* variables carry the page's colours so the glass card
+        follows the site theme: white "ink" on a dark page by default, dark
+        ink on a light page when <body data-theme="light">.
       */}
       <style dangerouslySetInnerHTML={{__html: `
+        .vlab-signin {
+          --signin-bg: #050510;
+          --signin-ink: #ffffff;
+          --signin-panel: rgba(255, 255, 255, 0.06);
+          --signin-error: #f87171;
+        }
+        [data-theme="light"] .vlab-signin {
+          --signin-bg: transparent;
+          --signin-ink: #0f172a;
+          --signin-panel: rgba(255, 255, 255, 0.72);
+          --signin-error: #dc2626;
+        }
         @keyframes pulse-slow {
           0%, 100% { opacity: 0.5; transform: scale(1); }
           50% { opacity: 0.8; transform: scale(1.05); }

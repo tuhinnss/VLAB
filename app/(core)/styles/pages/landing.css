@@ -577,6 +577,122 @@
     color-mix(in oklab, var(--accent-color), transparent 68%);
 }
 
+/* --- Light theme ------------------------------------------------------------
+   The hero above is drawn for a dark page (white glass, pale text, a dark
+   "screen" for the preview). On a light page those become invisible, so swap
+   them for frosted white glass with dark ink.
+   ---------------------------------------------------------------------------- */
+
+[data-theme="light"] .ph-hero {
+  background:
+    radial-gradient(
+      circle at 18% 16%,
+      rgba(79, 146, 255, 0.12),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 78% 22%,
+      color-mix(in oklab, var(--accent-color), transparent 80%),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 82%,
+      rgba(37, 99, 235, 0.08),
+      transparent 38%
+    ),
+    linear-gradient(135deg, #f8fafc, #f1f5f9 46%, #eefafa);
+}
+
+[data-theme="light"] .ph-hero__glass-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.82),
+    rgba(255, 255, 255, 0.6) 42%,
+    rgba(255, 255, 255, 0.72) 100%
+  );
+  border-color: rgba(15, 23, 42, 0.08);
+  box-shadow:
+    0 30px 80px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+[data-theme="light"] .ph-hero__glass-card::before {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5),
+    transparent 42%
+  );
+}
+
+[data-theme="light"] .ph-hero__eyebrow {
+  color: color-mix(in oklab, var(--accent-color), black 45%);
+  background: color-mix(in oklab, var(--accent-color), transparent 90%);
+  border-color: color-mix(in oklab, var(--accent-color), transparent 65%);
+  box-shadow: none;
+}
+
+[data-theme="light"] .ph-hero__subtitle {
+  color: var(--ph-fg-muted);
+}
+
+[data-theme="light"] .ph-hero-preview {
+  border-color: color-mix(in oklab, var(--accent-color), transparent 55%);
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      color-mix(in oklab, var(--accent-color), transparent 80%),
+      transparent 18rem
+    ),
+    linear-gradient(160deg, rgba(255, 255, 255, 0.96), rgba(240, 250, 250, 0.9));
+  box-shadow:
+    0 26px 70px rgba(15, 23, 42, 0.12),
+    0 0 70px color-mix(in oklab, var(--accent-color), transparent 88%);
+}
+
+[data-theme="light"] .ph-hero-preview::after {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    color-mix(in oklab, var(--accent-color), transparent 88%) 42%,
+    transparent 54%
+  );
+}
+
+[data-theme="light"] .ph-hero-preview__toolbar {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+[data-theme="light"] .ph-hero-preview__toolbar span {
+  background: var(--accent-color);
+}
+
+[data-theme="light"] .ph-hero-preview__mass--secondary {
+  background: #334155;
+}
+
+[data-theme="light"] .ph-hero-preview__mass--tertiary {
+  background: color-mix(in oklab, var(--accent-color), black 15%);
+}
+
+[data-theme="light"] .ph-hero-preview__atom {
+  color: var(--accent-color);
+}
+
+[data-theme="light"] .ph-hero-preview__topics a {
+  color: color-mix(in oklab, var(--accent-color), black 45%);
+}
+
+[data-theme="light"] .ph-hero-preview__metrics a {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* Restate the hover fill: the rule above ties on specificity and wins by order */
+[data-theme="light"] .ph-hero-preview__metrics a:hover,
+[data-theme="light"] .ph-hero-preview__metrics a:focus-visible {
+  background: color-mix(in oklab, var(--accent-color), transparent 84%);
+  box-shadow: 0 14px 26px rgba(15, 23, 42, 0.1);
+}
+
 /* --- Keyframes ------------------------------------------------------------- */
 
 @keyframes ph-preview-shine {

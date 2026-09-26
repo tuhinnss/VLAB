@@ -77,7 +77,7 @@ export default function ScrollIndicator() {
             width: "28px",
             height: "44px",
             borderRadius: "16px",
-            border: "2px solid #00e6e6",
+            border: "2px solid var(--accent-color)",
             margin: "0 auto",
             position: "relative",
             boxShadow: "0 0 14px rgba(0,230,230,0.6)",
@@ -93,7 +93,7 @@ export default function ScrollIndicator() {
               width: "6px",
               height: "6px",
               borderRadius: "50%",
-              background: "#00e6e6",
+              background: "var(--accent-color)",
               boxShadow: "0 0 8px rgba(0,230,230,0.9)",
               transition: "transform 0.3s ease-out",
             }}
@@ -106,7 +106,7 @@ export default function ScrollIndicator() {
             marginTop: "10px",
             fontSize: "11px",
             letterSpacing: "0.18em",
-            color: "#00e6e6",
+            color: "var(--accent-color)",
             textAlign: "center",
             fontWeight: 500,
           }}
